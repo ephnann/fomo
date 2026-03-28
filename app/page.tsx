@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { track } from "@vercel/analytics";
+import { usePostHog } from "posthog-js/react";
 import SearchBar from "@/components/SearchBar";
 import VenueCard from "@/components/VenueCard";
 import { matchVenues, CHIPS, type ChipName } from "@/lib/matcher";
@@ -19,6 +19,7 @@ const EXAMPLE_QUERIES = [
 ];
 
 export default function Home() {
+  const posthog = usePostHog();
   const [results, setResults]         = useState<ScoredVenue[]>([]);
   const [query, setQuery]             = useState("");
   const [hasSearched, setHasSearched] = useState(false);
@@ -39,7 +40,7 @@ export default function Home() {
     setActiveChips(chips);
     setQuery(input);
     setHasSearched(true);
-    track("search", { query: input });
+    posthog.capture("search", { query: input });
     runSearch(input, chips);
   }
 
