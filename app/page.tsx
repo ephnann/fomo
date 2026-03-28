@@ -184,11 +184,22 @@ export default function Home() {
       )}
 
       {/* Footer */}
-      {!hasSearched && (
-        <footer className="py-6 text-center text-xs text-zinc-300">
-          Brisbane &mdash; bars &amp; nightlife only
-        </footer>
-      )}
+      <footer className="py-6 text-center text-xs text-zinc-300 space-y-1">
+        {!hasSearched && (
+          <p>Brisbane &mdash; bars &amp; nightlife only</p>
+        )}
+        <p>
+          &copy; EPHY Studio 2026 &mdash;{" "}
+          <a
+            href="https://www.ephystudio.co/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-zinc-500 transition-colors underline underline-offset-2"
+          >
+            Built by EPHY Studio
+          </a>
+        </p>
+      </footer>
     </main>
   );
 }
