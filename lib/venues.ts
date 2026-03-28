@@ -321,9 +321,9 @@ export const venues: Venue[] = [
     attractiveness: 6,
     ageRange: "18-25",
 
-    energy: 6,
+    energy: 9,
     intimacy: 4,
-    social: 6,
+    social: 9,
     aesthetic: 6,
 
     venueTypes: ["bar", "country", "karaoke", "live_music"],

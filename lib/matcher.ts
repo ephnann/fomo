@@ -138,10 +138,10 @@ const SIGNALS: Record<string, KeywordSignal> = {
   "karaoke":          { social: 9, energy: 7, intimacy: 3 },
 
   // After work
-  "after work":       { social: 7, energy: 5 },
-  "work drinks":      { social: 7, energy: 5 },
-  "post work":        { social: 7, energy: 5 },
-  "afterwork":        { social: 7, energy: 5 },
+  "after work":       { social: 7, energy: 5, aesthetic: 9 },
+  "work drinks":      { social: 7, energy: 5, aesthetic: 9 },
+  "post work":        { social: 7, energy: 5, aesthetic: 9 },
+  "afterwork":        { social: 7, energy: 5, aesthetic: 9 },
 
   // Events / Occasions
   "birthday":         { social: 8, energy: 7 },
