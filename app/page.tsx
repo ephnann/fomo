@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import { track } from "@vercel/analytics";
 import SearchBar from "@/components/SearchBar";
 import VenueCard from "@/components/VenueCard";
 import { matchVenues, CHIPS, type ChipName } from "@/lib/matcher";
@@ -38,6 +39,7 @@ export default function Home() {
     setActiveChips(chips);
     setQuery(input);
     setHasSearched(true);
+    track("search", { query: input });
     runSearch(input, chips);
   }
 
