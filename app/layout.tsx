@@ -5,8 +5,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "FOMO — Find your vibe tonight",
-    description:
-      "Describe a vibe, get the best Brisbane bars that match it right now.",
+  description:
+    "Describe a vibe, get the best Brisbane bars that match it right now.",
 };
 
 export default function RootLayout({

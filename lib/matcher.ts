@@ -523,6 +523,15 @@ export function matchVenues(query: string, activeChips: string[] = []): ScoredVe
     .filter((v) => isFinite(v.score))
     .sort((a, b) => b.score - a.score);
 
+  // `lib/venues.ts` may contain duplicate ids from repeated ingests — keep the
+  // highest-scoring row per id so React keys and routing stay stable.
+  const seenIds = new Set<string>();
+  const deduped = scored.filter((v) => {
+    if (seenIds.has(v.id)) return false;
+    seenIds.add(v.id);
+    return true;
+  });
+
   // Apply a relative threshold when the query has meaningful intent.
   // Venues scoring below 80% of the top scorer are excluded — they're not
   // relevant enough to surface, even as lower-ranked results.
@@ -532,9 +541,9 @@ export function matchVenues(query: string, activeChips: string[] = []): ScoredVe
     intent.preferredAgeRange != null || intent.genres.length > 0 ||
     intent.venueType != null;
 
-  if (hasIntent && scored.length > 0) {
-    const topScore = scored[0].score;
-    return scored.filter((v) => v.score >= topScore * 0.80);
+  if (hasIntent && deduped.length > 0) {
+    const topScore = deduped[0].score;
+    return deduped.filter((v) => v.score >= topScore * 0.80);
   }
 
   // Query was non-empty but no signals were recognised — return nothing
